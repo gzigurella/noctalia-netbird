@@ -1,0 +1,52 @@
+id = "gabriele/netbird"
+name = "NetBird"
+version = "0.1.0"
+plugin_api = 24
+author = "Gabriele"
+license = "MIT"
+description = "Control NetBird and connect to currently reachable peers from the bar."
+icon = "network"
+tags = ["network", "vpn", "ssh"]
+dependencies = ["netbird"]
+
+[[widget]]
+id = "status"
+entry = "widget.luau"
+
+  [widget.actions]
+  left = "panel-toggle gabriele/netbird:connections"
+
+[[panel]]
+id = "connections"
+entry = "panel.luau"
+width = 380
+height = 480
+placement = "attached"
+open_near_click = true
+
+[[service]]
+id = "netbird"
+entry = "service.luau"
+
+[[setting]]
+key = "refresh_seconds"
+type = "int"
+label_key = "settings.refresh_seconds.label"
+description_key = "settings.refresh_seconds.description"
+default = 5
+min = 2
+max = 60
+
+[[setting]]
+key = "ssh_username"
+type = "string"
+label_key = "settings.ssh_username.label"
+description_key = "settings.ssh_username.description"
+default = ""
+
+[[setting]]
+key = "netbird_path"
+type = "file"
+label_key = "settings.netbird_path.label"
+description_key = "settings.netbird_path.description"
+default = "/usr/bin/netbird"
